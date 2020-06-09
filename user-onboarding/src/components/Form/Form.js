@@ -5,12 +5,10 @@ import axios from 'axios';
 
 import './Form.css';
 
-const Form = () => {
+const Form = (props) => {
     const [post, setPost] = useState();
 
     const [serverError, setServerError] = useState("");
-
-    const [users, setUsers] = useState([]);
 
     const [formState, setFormState] = useState({
         name: "",
@@ -32,14 +30,14 @@ const Form = () => {
         name: yup.string().required("Name is a required field"),
         email: yup.string().email("Incorrect email format").required("Email is a required field"),
         password: yup.string().required("Password is a correct field"),
-        terms: yup.boolean().oneOf([true, "on"]).test("is-true", "Must agree to our terms", val => val === true)
+        terms: yup.boolean().oneOf([true]).test("is-true", "Must agree to our terms", val => val === true)
     });
     
     useEffect(() => {
         formSchema.isValid(formState).then(isValid => {
             setButtonDisabled(!isValid);
         });
-    }, [formState]);
+    }, [formState, formSchema]);
 
     const handleChanges = (event) => {
         event.persist(); // this is necessary to maintain the event object so that we can pass it to our validation function
@@ -71,11 +69,7 @@ const Form = () => {
                     terms: false
                 });
 
-                // update our list of users with the new user
-                setUsers([
-                    ...users,
-                    res.data
-                ]);
+                props.getUser(res.data);
 
                 setServerError(null);
             })
