@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
+import * as yup from 'yup';
 import axios from 'axios';
 
 import './Form.css';
@@ -18,13 +19,26 @@ const Form = () => {
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
-    const formSchema = yup.object().shape({
+    const [errors, setErrors] = useState({
         name: "",
         email: "",
         password: "",
         terms: ""
     });
+
+    const formSchema = yup.object().shape({
+        name: yup.string().required("Name is a required field"),
+        email: yup.string().email("Incorrect email format").required("Email is a required field"),
+        password: yup.string().required("Password is a correct field"),
+        terms: yup.boolean().oneOf([true])
+    });
     
+    useEffect(() => {
+        formSchema.isValid(formState).then(isValid => {
+            setButtonDisabled(!isValid);
+        });
+    }, [formState]);
+
     const handleChanges = (event) => {
         setFormState({
             ...formState, // pull out the existing formState
@@ -33,7 +47,27 @@ const Form = () => {
     };
 
     const handleSubmit = (event) => {
+        event.preventDefault();
 
+        axios
+            .post("https://reqres.in/api/users", formState)
+            .then(res => {
+                // display our data
+                setPost(resp.data);
+
+                // reset our form state
+                setFormState({
+                    name: "",
+                    email: "",
+                    password: "",
+                    terms: false
+                });
+
+                setServerError(null);
+            })
+            .catch(err => {
+                setServerError("Pardon the mess! We'll have it cleaned up in a jiffy!");
+            });
     };
 
     return (
@@ -57,6 +91,7 @@ const Form = () => {
                 </label>
                 <button type="submit" disabled={buttonDisabled}>Submit</button>
             </form>
+            <pre>{JSON.stringify(post)}</pre>
         </div>
     );
 };
