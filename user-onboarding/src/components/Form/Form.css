@@ -25,3 +25,11 @@
     display: inline-block;
     margin-right: 10px
 }
+
+.error{
+    color: red;
+}
+
+.error:before{
+    content: '* ';
+}
