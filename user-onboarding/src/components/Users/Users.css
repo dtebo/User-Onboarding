@@ -1,0 +1,20 @@
+.users{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 1.4rem;
+}
+
+.users .user{
+    width: 30%;
+    margin: 10px;
+}
+
+.users .user .card-header{
+    font-weight: 700;
+}
+
+.users .user .card-text span{
+    font-weight: 500;
+}

@@ -19,9 +19,9 @@ const User = (props) => {
                 <CardTitle>{user.name}</CardTitle>
             </CardHeader>
             <CardBody>
-                <CardText>{`Email: ${user.email}`}</CardText>
-                <CardText>{`Password: ${user.password}`}</CardText>
-                <CardText>{`Created On: ${new Date(user.createdAt).toLocaleDateString()}`}</CardText>
+                <CardText>{<span>Email: </span>}{`${user.email}`}</CardText>
+                <CardText>{<span>Password: </span>}{`${user.password}`}</CardText>
+                <CardText>{<span>Created On: </span>} {`${new Date(user.createdAt).toLocaleDateString()}`}</CardText>
             </CardBody>
         </Card>
     );
