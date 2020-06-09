@@ -13,6 +13,18 @@ const User = (props) => {
         user
     } = props;
 
+    const toTitleCase = (str) => {
+        const strArray = str.split("");
+
+        const newArr = strArray.map((c, idx) => {
+            if(idx === 0 || idx === str.indexOf(" ") + 1) return c.toUpperCase();
+
+            return c;
+        });
+
+        return newArr.join("");
+    }
+
     return(
         <Card className="user">
             <CardHeader>
@@ -20,7 +32,7 @@ const User = (props) => {
             </CardHeader>
             <CardBody>
                 <CardText>{<span>Email: </span>}{`${user.email}`}</CardText>
-                <CardText>{<span>Password: </span>}{`${user.password}`}</CardText>
+                <CardText>{<span>Role: </span>}{`${toTitleCase(user.role)}`}</CardText>
                 <CardText>{<span>Created On: </span>} {`${new Date(user.createdAt).toLocaleDateString()}`}</CardText>
             </CardBody>
         </Card>

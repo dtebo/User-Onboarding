@@ -14,6 +14,7 @@ const Form = (props) => {
         name: "",
         email: "",
         password: "",
+        role: "",
         terms: false
     });
 
@@ -23,6 +24,7 @@ const Form = (props) => {
         name: "",
         email: "",
         password: "",
+        role: "",
         terms: ""
     });
 
@@ -30,6 +32,7 @@ const Form = (props) => {
         name: yup.string().required("Name is a required field"),
         email: yup.string().email("Incorrect email format").required("Email is a required field"),
         password: yup.string().required("Password is a correct field"),
+        role: yup.string().oneOf(["project manager","designer","frontend engineer","backend engineer"]),
         terms: yup.boolean().oneOf([true]).test("is-true", "Must agree to our terms", val => val === true)
     });
     
@@ -66,6 +69,7 @@ const Form = (props) => {
                     name: "",
                     email: "",
                     password: "",
+                    role: "",
                     terms: false
                 });
 
@@ -116,9 +120,21 @@ const Form = (props) => {
                     <input type="text" id="password" name="password" value={formState.password} onChange={handleChanges} />
                     {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
                 </label>
+                <label htmlFor="role">
+                    Role
+                    <select name="role" id="role" onChange={handleChanges}>
+                        <option value="">--Please select a role--</option>
+                        <option value="project manager">Project Manager</option>
+                        <option value="designer">Designer</option>
+                        <option value="frontend engineer">Frontend Engineer</option>
+                        <option value="backend engineer">Backend Engineer</option>
+                    </select>
+                    {errors.role.length > 0 ? <p className="error">{errors.role}</p> : null}
+                </label>
                 <label htmlFor="terms" className="terms">
                     <input type="checkbox" id="terms" name="terms" checked={formState.terms} onChange={handleChanges} />
                     Terms of Service
+                    <span className="checkmark"></span>
                     {errors.terms.length > 0 ? <p className="error">{errors.terms}</p> : null}
                 </label>
                 <button type="submit" disabled={buttonDisabled}>Submit</button>

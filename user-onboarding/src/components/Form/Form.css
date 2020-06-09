@@ -13,17 +13,53 @@
     text-align: left;
 }
 
-.form-wrapper form input{
+.form-wrapper form input, select{
     margin-top: 10px;
 }
 
 .form-wrapper form .terms{
     display: inline-block;
+    position: relative;
+}
+
+.checkmark {
+    position: absolute;
+    top: 9px;
+    left: 5px;
+    height: 15px;
+    width: 15px;
+    background-color: rgb(28, 143, 209);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.form-wrapper form .terms ~ .checkmark{
+    background-color: #206cfa;
+}
+
+.terms input:checked ~ .checkmark:after{
+    display: block;
+}
+
+.terms .checkmark:after{
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .terms input{
-    display: inline-block;
-    margin-right: 10px
+    opacity: 0;
+    margin-right: 20px;
 }
 
 .error{
