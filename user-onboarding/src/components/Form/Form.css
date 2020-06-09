@@ -1,0 +1,27 @@
+.form-wrapper form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.form-wrapper form label{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    font-size: 1.4rem;
+    text-align: left;
+}
+
+.form-wrapper form input{
+    margin-top: 10px;
+}
+
+.form-wrapper form .terms{
+    display: inline-block;
+}
+
+.terms input{
+    display: inline-block;
+    margin-right: 10px
+}
