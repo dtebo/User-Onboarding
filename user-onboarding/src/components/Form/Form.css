@@ -17,6 +17,15 @@
     margin-top: 10px;
 }
 
+.form-wrapper form input{
+    border: none;
+    border-bottom: 2px solid gray;
+}
+
+.form-wrapper form input:focus{
+    outline: none;
+}
+
 .form-wrapper form .terms{
     display: inline-block;
     position: relative;
