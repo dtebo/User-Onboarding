@@ -10,6 +10,8 @@ const Form = () => {
 
     const [serverError, setServerError] = useState("");
 
+    const [users, setUsers] = useState([]);
+
     const [formState, setFormState] = useState({
         name: "",
         email: "",
@@ -68,6 +70,12 @@ const Form = () => {
                     password: "",
                     terms: false
                 });
+
+                // update our list of users with the new user
+                setUsers([
+                    ...users,
+                    res.data
+                ]);
 
                 setServerError(null);
             })
