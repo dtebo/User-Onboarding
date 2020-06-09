@@ -7,6 +7,8 @@ import './Form.css';
 const Form = () => {
     const [post, setPost] = useState();
 
+    const [serverError, setServerError] = useState("");
+
     const [formState, setFormState] = useState({
         name: "",
         email: "",
@@ -16,8 +18,18 @@ const Form = () => {
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
+    const formSchema = yup.object().shape({
+        name: "",
+        email: "",
+        password: "",
+        terms: ""
+    });
+    
     const handleChanges = (event) => {
-
+        setFormState({
+            ...formState, // pull out the existing formState
+            [event.target.name]: event.target.name === 'terms' ? event.target.checked : event.target.value // update the state
+        });
     };
 
     const handleSubmit = (event) => {
