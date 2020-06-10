@@ -15,6 +15,7 @@ const Form = (props) => {
         email: "",
         password: "",
         role: "",
+        favoriteColor: "",
         terms: false
     });
 
@@ -25,6 +26,7 @@ const Form = (props) => {
         email: "",
         password: "",
         role: "",
+        favoriteColor: "",
         terms: ""
     });
 
@@ -33,6 +35,7 @@ const Form = (props) => {
         email: yup.string().email("Incorrect email format").required("Email is a required field"),
         password: yup.string().required("Password is a correct field"),
         role: yup.string().oneOf(["project manager","designer","frontend engineer","backend engineer"]),
+        favoriteColor: yup.string().matches(/#{1}[\d\w]/, {message: "The color value must be a hexidecimal value"}),
         terms: yup.boolean().oneOf([true]).test("is-true", "Must agree to our terms", val => val === true)
     });
     
@@ -49,7 +52,7 @@ const Form = (props) => {
             ...formState,
             [event.target.name]: event.target.name === 'terms' ? event.target.checked : event.target.value
         };
-
+console.log(event.target.value);
         validateChange(event);
 
         setFormState(newFormData);
@@ -119,6 +122,10 @@ const Form = (props) => {
                     Password
                     <input type="text" id="password" name="password" value={formState.password} onChange={handleChanges} />
                     {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
+                </label>
+                <label htmlFor="favoriteColor">
+                    What is your favorite color?
+                    <input type="color" name="favoriteColor" id="favoriteColor" onChange={handleChanges} />
                 </label>
                 <label htmlFor="role">
                     Role
