@@ -43,6 +43,7 @@
     height: 15px;
     width: 15px;
     background-color: rgb(28, 143, 209);
+    border-radius: 3px;
 }
 
 .checkmark:after {
@@ -69,6 +70,20 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.form-wrapper button{
+    height: 35px;
+    border-radius: 5px;
+    box-shadow: 1px 5px 15px #c2c2c2;
+    background-image: linear-gradient(45deg, #bb00a5, #cc07b5, #ff00cc);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.form-wrapper button:hover{
+    box-shadow: 1px 5px 5px #c2c2c2;
 }
 
 .terms input{
