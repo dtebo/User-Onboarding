@@ -83,3 +83,12 @@
 .error:before{
     content: '* ';
 }
+
+.form-wrapper pre{
+    font-size: 1.6rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    width: 80%;
+    margin: 20px auto 0 auto;
+    height: 100px;
+}

@@ -9,6 +9,7 @@
 .users .user{
     width: 30%;
     margin: 10px;
+    min-width: 200px;
 }
 
 .users .user .card-header{

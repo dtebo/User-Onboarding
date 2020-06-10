@@ -33,6 +33,7 @@ const User = (props) => {
             <CardBody>
                 <CardText>{<span>Email: </span>}{`${user.email}`}</CardText>
                 <CardText>{<span>Role: </span>}{`${toTitleCase(user.role)}`}</CardText>
+                <CardText>{<span style={{color: user.favoriteColor}}>{`Favorite Color: ${user.favoriteColor}`}</span>}</CardText>
                 <CardText>{<span>Created On: </span>} {`${new Date(user.createdAt).toLocaleDateString()}`}</CardText>
             </CardBody>
         </Card>
