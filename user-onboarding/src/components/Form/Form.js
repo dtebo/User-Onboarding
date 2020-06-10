@@ -32,7 +32,7 @@ const Form = (props) => {
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Name is a required field"),
-        email: yup.string().email("Incorrect email format").required("Email is a required field"),
+        email: yup.string().email("Incorrect email format").test("emailCheck", "That email is already taken", (item) => item !== undefined ? item !== "waffle@syrup.com" : true).required("Email is a required field"),
         password: yup.string().required("Password is a correct field"),
         role: yup.string().oneOf(["project manager","designer","frontend engineer","backend engineer"]),
         favoriteColor: yup.string().matches(/#{1}[\d\w]/, {message: "The color value must be a hexidecimal value"}),
@@ -52,7 +52,7 @@ const Form = (props) => {
             ...formState,
             [event.target.name]: event.target.name === 'terms' ? event.target.checked : event.target.value
         };
-console.log(event.target.value);
+
         validateChange(event);
 
         setFormState(newFormData);
