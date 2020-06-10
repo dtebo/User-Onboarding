@@ -73,6 +73,7 @@
 }
 
 .form-wrapper button{
+    cursor: pointer;
     height: 35px;
     border-radius: 5px;
     box-shadow: 1px 5px 15px #c2c2c2;
@@ -84,6 +85,11 @@
 
 .form-wrapper button:hover{
     box-shadow: 1px 5px 5px #c2c2c2;
+}
+
+.form-wrapper button:disabled{
+    box-shadow: none;
+    background: #555555;
 }
 
 .terms input{
